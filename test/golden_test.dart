@@ -29,22 +29,22 @@ void main() {
         'private': (
           BurkinaFasoPlates.private,
           BurkinaFasoThemes.private,
-          '1 1 G K 1 8 4 4',
+          '11 GK 1844',
         ),
         'commercial': (
           BurkinaFasoPlates.commercial,
           BurkinaFasoThemes.commercial,
-          '1 1 E 1 5 1 5',
+          '11 E 1515',
         ),
         'police': (
           BurkinaFasoPlates.police,
           BurkinaFasoThemes.police,
-          'P N 0 0 2 0',
+          'PN 0020',
         ),
         'gendarmerie': (
           BurkinaFasoPlates.gendarmerie,
           BurkinaFasoThemes.gendarmerie,
-          '2 0 3 0 4 E M G N',
+          '2 0304 EMGN',
         ),
       };
 

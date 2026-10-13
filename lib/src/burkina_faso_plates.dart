@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/widgets.dart';
 import 'package:plate_alphabet/plate_alphabet.dart';
 import 'package:plate_core/plate_core.dart';
@@ -178,19 +180,18 @@ abstract final class BurkinaFasoPlates {
     final List<PlateSlot> slots = <PlateSlot>[];
     final List<PlateTextGroup> groups = <PlateTextGroup>[];
     for (final _Run r in runs) {
-      groups.add(
-        PlateTextGroup(<int>[
-          for (var i = 0; i < r.count; i++) slots.length + i,
-        ], key: r.key),
-      );
-      slots.addAll(
-        plateRegister(
+      groups.add(PlateTextGroup(<int>[slots.length], key: r.key));
+      slots.add(
+        PlateSlot(
           alphabet: r.alphabet,
-          count: r.count,
-          left: r.cx - r.pitch / 2,
-          top: cy - _Layout.box / 2,
-          width: r.pitch,
-          height: _Layout.box,
+          box: PlateBox(
+            r.cx - r.pitch / 2,
+            cy - _Layout.box / 2,
+            r.count * r.pitch,
+            _Layout.box,
+          ),
+          length: r.count,
+          spacing: max(0, r.pitch - 0.6 * 0.72 * _Layout.box),
         ),
       );
     }
