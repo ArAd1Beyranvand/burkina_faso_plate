@@ -23,10 +23,7 @@ class BurkinaFasoValidator extends GatedPlateValidator {
       ];
 
   const BurkinaFasoValidator.police()
-    : _rules = const <(String, bool, int)>[
-        ('service', false, 2),
-        ('serial', true, 4),
-      ];
+    : _rules = const <(String, bool, int)>[('service', false, 2), ('serial', true, 4)];
 
   const BurkinaFasoValidator.gendarmerie()
     : _rules = const <(String, bool, int)>[
