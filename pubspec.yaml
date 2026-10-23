@@ -1,5 +1,5 @@
 name: burkina_faso_plate
-description: "Burkina Faso's licence plates for the plate_core library — private (black on white), commercial (white on blue), police and gendarmerie (white on black), with their themes, alphabets and an advisory validator."
+description: "Burkina Faso's licence plates for plate_core: private (black on white), commercial (white on blue), police and gendarmerie (white on black), with their themes, and more."
 version: 0.1.0
 repository: https://github.com/ArAd1Beyranvand/burkina_faso_plate
 resolution: workspace
