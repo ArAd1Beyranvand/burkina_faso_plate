@@ -96,7 +96,11 @@ abstract final class BurkinaFasoPlates {
       _Run('serial', BurkinaFasoAlphabets.digits, 4, 234, 50.4),
     ],
     labels: const <PlateLabel>[
-      PlateLabel(text: 'BF', box: _Layout.policeBf, glyphHeight: _Layout.policeBfGlyph),
+      PlateLabel(
+        text: 'BF',
+        box: _Layout.policeBf,
+        glyphHeight: _Layout.policeBfGlyph,
+      ),
     ],
   );
 
@@ -113,17 +117,28 @@ abstract final class BurkinaFasoPlates {
     ],
   );
 
-  static List<PlateSpec> get all => <PlateSpec>[private, commercial, police, gendarmerie];
+  static List<PlateSpec> get all => <PlateSpec>[
+    private,
+    commercial,
+    police,
+    gendarmerie,
+  ];
 
   /// Flag map in a ring, from `assets/icons/burkina_faso_flag_map.svg`; the
   /// commercial plate uses a white silhouette.
   static const PlateDecal _roundel = PlateDecal(
-    image: AssetImage('assets/icons/burkina_faso_roundel.png', package: 'burkina_faso_plate'),
+    image: AssetImage(
+      'assets/icons/burkina_faso_roundel.png',
+      package: 'burkina_faso_plate',
+    ),
     box: _Layout.roundel,
   );
 
   static const PlateDecal _roundelWhite = PlateDecal(
-    image: AssetImage('assets/icons/burkina_faso_roundel_white.png', package: 'burkina_faso_plate'),
+    image: AssetImage(
+      'assets/icons/burkina_faso_roundel_white.png',
+      package: 'burkina_faso_plate',
+    ),
     box: _Layout.roundel,
   );
 
@@ -145,7 +160,12 @@ abstract final class BurkinaFasoPlates {
       slots.add(
         PlateSlot(
           alphabet: r.alphabet,
-          box: PlateBox(r.cx - r.pitch / 2, cy - _Layout.box / 2, r.count * r.pitch, _Layout.box),
+          box: PlateBox(
+            r.cx - r.pitch / 2,
+            cy - _Layout.box / 2,
+            r.count * r.pitch,
+            _Layout.box,
+          ),
           length: r.count,
           spacing: max(0, r.pitch - 0.6 * 0.72 * _Layout.box),
         ),
