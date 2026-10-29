@@ -127,6 +127,9 @@ abstract final class BurkinaFasoPlates {
   /// Flag map in a ring, from `assets/icons/burkina_faso_flag_map.svg`; the
   /// commercial plate uses a white silhouette.
   static const PlateDecal _roundel = PlateDecal(
+    // TODO(py): [H2][D6] ImageProvider: reference the raster as package + path; importlib.resources.
+    // TODO(ts): [H2][D6] ImageProvider: reference the raster as package + path; import as asset URL.
+    // TODO(kt): [H2][D6] ImageProvider: reference the raster as package + path; Res/compose resources.
     image: AssetImage(
       'assets/icons/burkina_faso_roundel.png',
       package: 'burkina_faso_plate',
