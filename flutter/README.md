@@ -6,13 +6,24 @@ GO VEGAN 🌱
 
 From the mighty people of Iran to the upright people of Burkina Faso to view examples:
 
-https://platexample.ir/#/discover/burkinafaso
+https://platexample.ir/#/discover/burkinafaso:flutter
 
 # burkina_faso_plate
 
-Burkina Faso's licence plates for the `plate_core` library. Private, commercial, police and gendarmerie plates, with their themes, alphabets and an advisory validator.
+Burkina Faso's licence plates for plate_core: private (black on white), commercial (white on blue), police and gendarmerie (white on black), with their themes, and more.
 
-## Install
+## Languages
+
+| Language | Folder | Example |
+| --- | --- | --- |
+| Flutter / Dart | [`flutter/`](https://github.com/ArAd1Beyranvand/burkina_faso_plate/tree/main/flutter) | [platexample](https://platexample.ir/#/discover/burkinafaso:flutter) |
+| Kotlin | [`kotlin/`](https://github.com/ArAd1Beyranvand/burkina_faso_plate/tree/main/kotlin) | [platexample](https://platexample.ir/#/discover/burkinafaso:kotlin) |
+| Python | [`python/`](https://github.com/ArAd1Beyranvand/burkina_faso_plate/tree/main/python) | [platexample](https://platexample.ir/#/discover/burkinafaso:python) |
+| TypeScript | [`typescript/`](https://github.com/ArAd1Beyranvand/burkina_faso_plate/tree/main/typescript) | [platexample](https://platexample.ir/#/discover/burkinafaso:typescript) |
+
+## Quick start
+
+### Install
 
 ```yaml
 dependencies:
@@ -20,7 +31,7 @@ dependencies:
   burkina_faso_plate: ^0.1.0
 ```
 
-## Use
+### Use
 
 ```dart
 import 'package:plate_core/plate_core.dart';
@@ -33,13 +44,30 @@ PlateCanvas(
 );
 ```
 
-## Contains
+## Specs
 
-- `BurkinaFasoCountry` — country panel: `burkinaFaso`.
-- `BurkinaFasoPlates` — 4 plate specs: `private`, `commercial`, `police`, `gendarmerie`.
-- `BurkinaFasoThemes` — 4 themes: `private`, `commercial`, `police`, `gendarmerie`.
-- `BurkinaFasoValidator` — advisory validator; flags the frame, never blocks a keystroke.
-- 2 bundled assets (`burkina_faso_roundel.png`, `burkina_faso_roundel_white.png`).
+Each spec is one plate layout.
+
+- `BurkinaFasoPlates.private`
+- `BurkinaFasoPlates.commercial`
+- `BurkinaFasoPlates.police`
+- `BurkinaFasoPlates.gendarmerie`
+
+## Themes
+
+- `BurkinaFasoThemes.private`
+- `BurkinaFasoThemes.commercial`
+- `BurkinaFasoThemes.police`
+- `BurkinaFasoThemes.gendarmerie`
+
+## Change it
+
+`PlateCanvas` takes `spec:` (an entry of `BurkinaFasoPlates`) and `theme:` (an entry of `BurkinaFasoThemes`). Set `validator:` to `BurkinaFasoValidator()` and `autoValidate: true` to show validation hints.
+
+## Also included
+
+- `BurkinaFasoCountry` — the country panel.
+- `BurkinaFasoValidator` — the plate validator.
 
 ## Plates
 
@@ -56,3 +84,6 @@ Not implemented: the pre-1995 plates.
 
 Painted by [`plate_core`](https://pub.dev/packages/plate_core); alphabets shared through [`plate_alphabet`](https://pub.dev/packages/plate_alphabet); optional character picker in [`plate_keypad`](https://pub.dev/packages/plate_keypad).
 
+## License
+
+See [LICENSE](https://github.com/ArAd1Beyranvand/burkina_faso_plate/blob/main/LICENSE).

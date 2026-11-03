@@ -25,6 +25,4 @@ abstract final class BurkinaFasoColors {
   static const Color gendarmerie = Color(0xFF1E1B19);
 
   static const Color gendarmerieInk = Color(0xFFE6E5E3);
-
-  static const Color inactive = Color(0xFFB0B0B0);
 }

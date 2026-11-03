@@ -7,7 +7,6 @@ import 'burkina_faso_colors.dart';
 abstract final class BurkinaFasoCountry {
   static const PlateCountry burkinaFaso = PlateCountry(
     code: 'bf',
-    captionLines: <String>[],
     panelColor: BurkinaFasoColors.white,
     panelTextColor: BurkinaFasoColors.black,
   );

@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/widgets.dart';
 import 'package:plate_alphabet/plate_alphabet.dart';
 import 'package:plate_core/plate_core.dart';
@@ -23,12 +21,9 @@ import 'burkina_faso_themes.dart';
 /// the photos'. The police emblem and gendarmerie crest are left blank: no
 /// vector of either is published.
 abstract final class _Layout {
-  static const double width = 520, height = 110;
-  static const double box = 100;
+  static const double width = 520, height = 110, box = 100;
 
-  static const double privateCy = 56.7;
-  static const double commercialCy = 55.3;
-  static const double policeCy = 59;
+  static const double privateCy = 56.7, commercialCy = 55.3, policeCy = 59;
   static const double gendarmerieCy = 53.9;
 
   static const PlateBox bf = PlateBox(461, 66, 40, 20);
@@ -44,16 +39,15 @@ abstract final class _Layout {
   static const double dotGlyph = 16;
 }
 
-/// [count] same-kind slots from [cx] at [pitch], keyed [key].
-class _Run {
-  const _Run(this.key, this.alphabet, this.count, this.cx, this.pitch);
-
-  final String key;
-  final PlateAlphabet alphabet;
-  final int count;
-  final double cx;
-  final double pitch;
-}
+/// A run keyed `key`: `count` glyphs of `alphabet`, the first centred on
+/// `cx`, stepping `pitch`.
+typedef _Run = (
+  String key,
+  PlateAlphabet alphabet,
+  int count,
+  double cx,
+  double pitch,
+);
 
 /// Burkina Faso's current plates: one row of characters on a plain field.
 ///
@@ -68,9 +62,9 @@ abstract final class BurkinaFasoPlates {
     'bf.private',
     _Layout.privateCy,
     const <_Run>[
-      _Run('region', BurkinaFasoAlphabets.digits, 2, 32.4, 44.6),
-      _Run('letters', BurkinaFasoAlphabets.letters, 2, 158.4, 41),
-      _Run('serial', BurkinaFasoAlphabets.digits, 4, 283, 39.3),
+      ('region', BurkinaFasoAlphabets.digits, 2, 32.4, 44.6),
+      ('letters', BurkinaFasoAlphabets.letters, 2, 158.4, 41),
+      ('serial', BurkinaFasoAlphabets.digits, 4, 283, 39.3),
     ],
     labels: _bf,
     decals: <PlateDecal>[_roundel],
@@ -80,9 +74,9 @@ abstract final class BurkinaFasoPlates {
     'bf.commercial',
     _Layout.commercialCy,
     const <_Run>[
-      _Run('region', BurkinaFasoAlphabets.digits, 2, 64.5, 44.5),
-      _Run('letter', BurkinaFasoAlphabets.letters, 1, 187.7, 44),
-      _Run('serial', BurkinaFasoAlphabets.digits, 4, 264.5, 45.8),
+      ('region', BurkinaFasoAlphabets.digits, 2, 64.5, 44.5),
+      ('letter', BurkinaFasoAlphabets.letters, 1, 187.7, 44),
+      ('serial', BurkinaFasoAlphabets.digits, 4, 264.5, 45.8),
     ],
     labels: _bf,
     decals: <PlateDecal>[_roundelWhite],
@@ -92,8 +86,8 @@ abstract final class BurkinaFasoPlates {
     'bf.police',
     _Layout.policeCy,
     const <_Run>[
-      _Run('service', BurkinaFasoAlphabets.letters, 2, 97.6, 53.4),
-      _Run('serial', BurkinaFasoAlphabets.digits, 4, 234, 50.4),
+      ('service', BurkinaFasoAlphabets.letters, 2, 97.6, 53.4),
+      ('serial', BurkinaFasoAlphabets.digits, 4, 234, 50.4),
     ],
     labels: const <PlateLabel>[
       PlateLabel(
@@ -108,9 +102,9 @@ abstract final class BurkinaFasoPlates {
     'bf.gendarmerie',
     _Layout.gendarmerieCy,
     const <_Run>[
-      _Run('unit', BurkinaFasoAlphabets.digits, 1, 33.3, 44),
-      _Run('serial', BurkinaFasoAlphabets.digits, 4, 94.7, 44),
-      _Run('corps', BurkinaFasoAlphabets.letters, 4, 360.4, 41.5),
+      ('unit', BurkinaFasoAlphabets.digits, 1, 33.3, 44),
+      ('serial', BurkinaFasoAlphabets.digits, 4, 94.7, 44),
+      ('corps', BurkinaFasoAlphabets.letters, 4, 360.4, 41.5),
     ],
     labels: const <PlateLabel>[
       PlateLabel(text: '•', box: _Layout.dot, glyphHeight: _Layout.dotGlyph),
@@ -127,9 +121,6 @@ abstract final class BurkinaFasoPlates {
   /// Flag map in a ring, from `assets/icons/burkina_faso_flag_map.svg`; the
   /// commercial plate uses a white silhouette.
   static const PlateDecal _roundel = PlateDecal(
-    // TODO(py): [H2][D6] ImageProvider: reference the raster as package + path; importlib.resources.
-    // TODO(ts): [H2][D6] ImageProvider: reference the raster as package + path; import as asset URL.
-    // TODO(kt): [H2][D6] ImageProvider: reference the raster as package + path; Res/compose resources.
     image: AssetImage(
       'assets/icons/burkina_faso_roundel.png',
       package: 'burkina_faso_plate',
@@ -155,36 +146,25 @@ abstract final class BurkinaFasoPlates {
     List<_Run> runs, {
     List<PlateLabel> labels = const <PlateLabel>[],
     List<PlateDecal> decals = const <PlateDecal>[],
-  }) {
-    final List<PlateSlot> slots = <PlateSlot>[];
-    final List<PlateTextGroup> groups = <PlateTextGroup>[];
-    for (final _Run r in runs) {
-      groups.add(PlateTextGroup(<int>[slots.length], key: r.key));
-      slots.add(
-        PlateSlot(
-          alphabet: r.alphabet,
-          box: PlateBox(
-            r.cx - r.pitch / 2,
-            cy - _Layout.box / 2,
-            r.count * r.pitch,
-            _Layout.box,
-          ),
-          length: r.count,
-          spacing: max(0, r.pitch - 0.6 * 0.72 * _Layout.box),
+  }) => PlateSpec(
+    id: id,
+    country: BurkinaFasoCountry.burkinaFaso,
+    canvasWidth: _Layout.width,
+    canvasHeight: _Layout.height,
+    slots: <PlateSlot>[
+      for (final (String key, PlateAlphabet a, int n, double cx, double p)
+          in runs)
+        plateRun(
+          a,
+          n,
+          left: cx - p / 2,
+          pitch: p,
+          top: cy - _Layout.box / 2,
+          height: _Layout.box,
+          group: key,
         ),
-      );
-    }
-    return PlateSpec(
-      id: id,
-      country: BurkinaFasoCountry.burkinaFaso,
-      canvasWidth: _Layout.width,
-      canvasHeight: _Layout.height,
-      panel: const PlatePanel(box: PlateBox(0, 0, 0, 0)),
-      noPanel: true,
-      slots: slots,
-      labels: labels,
-      decals: decals,
-      textGroups: groups,
-    );
-  }
+    ],
+    labels: labels,
+    decals: decals,
+  );
 }
